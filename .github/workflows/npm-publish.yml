@@ -4,8 +4,6 @@
 name: Deploy to NPM
 
 on:
-  push:
-    branches: [master]
   release:
     types: [created]
 
