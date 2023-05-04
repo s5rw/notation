@@ -513,7 +513,7 @@ describe('Notation', () => {
         expect(merged.key).toEqual(null);
         expect(merged.newkey.p1).toEqual(13);
         expect(merged.newkey.p2).toEqual(false);
-        expect(merged.newkey.p3.val).toEqual(jasmine.any(Array));
+        expect(merged.newkey.p3.val).toEqual(expect.any(Array));
 
         expect(() => create().merge(1)).toThrow();
         expect(() => create().merge([])).toThrow();
@@ -523,7 +523,7 @@ describe('Notation', () => {
         expect(separated.key).toBeUndefined();
         expect(separated.newkey.p1).toEqual(13);
         expect(separated.newkey.p2).toEqual(false);
-        expect(separated.newkey.p3.val).toEqual(jasmine.any(Array));
+        expect(separated.newkey.p3.val).toEqual(expect.any(Array));
 
         expect(merged.key).toEqual(null);
         expect(merged.newkey.p1).toBeUndefined();
@@ -541,7 +541,7 @@ describe('Notation', () => {
         expect(obj.company.address.location).toBeDefined();
         nota.rename('company.address.location', 'company.loc.geo');
         expect(obj.company.address.location).toBeUndefined();
-        expect(obj.company.loc.geo.lat).toEqual(jasmine.any(Number));
+        expect(obj.company.loc.geo.lat).toEqual(expect.any(Number));
 
         expect(obj.name).toBeDefined();
         nota.rename('name', 'person');

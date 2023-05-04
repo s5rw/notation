@@ -1,5 +1,5 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const libraryName = 'notation';
 const libPath = path.resolve(__dirname, 'lib');
@@ -26,7 +26,7 @@ module.exports = env => {
                 {
                     test: /(\.jsx?)$/,
                     loader: 'babel-loader',
-                    query: {
+                    options: {
                         presets: ['@babel/preset-env']
                     },
                     exclude: /(node_modules|bower_components)/
@@ -79,19 +79,15 @@ module.exports = env => {
         if (env.WEBPACK_OUT === 'production') {
             config.devtool = 'source-map';
             config.output.filename = libraryName.toLowerCase() + '.min.js';
-            config.optimization.minimizer.push(new UglifyJsPlugin({
+            config.optimization.minimizer.push(new TerserPlugin({
                 test: /\.js$/,
-                sourceMap: true,
-                uglifyOptions: {
-                    ie8: false,
-                    ecma: 5,
-                    output: {
-                        comments: false,
-                        beautify: false
-                    },
+                terserOptions: {
+                    sourceMap: true,
                     compress: true,
-                    warnings: true
-                }
+                    ecma: 5,
+                    ie8: false
+                },
+                extractComments: true
             }));
         }
     }

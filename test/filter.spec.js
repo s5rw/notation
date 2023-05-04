@@ -109,7 +109,7 @@ describe('Notation#filter()', () => {
         // add wildcard
         globs = ['!prop.id', 'prop.id', '*'];
         filtered = notate(data).filter(globs).value;
-        expect(filtered.prop).toEqual(jasmine.any(Object));
+        expect(filtered.prop).toEqual(expect.any(Object));
         expect(filtered.prop.id).toBeUndefined();
         expect(filtered.prop.x).toEqual(true);
         expect(filtered.y).toEqual(data.y);
@@ -121,7 +121,7 @@ describe('Notation#filter()', () => {
         let globs = ['!id'];
         // should filter as `{}`
         let filtered = notate(data).filter(globs).value;
-        expect(filtered).toEqual(jasmine.any(Object));
+        expect(filtered).toEqual(expect.any(Object));
         expect(Object.keys(filtered).length).toEqual(0);
         // add wildcard
         globs = ['*', '!id'];
@@ -174,25 +174,25 @@ describe('Notation#filter()', () => {
 
         result = filter(['*', '!x.*.*']).value;
         // console.log(result);
-        expect(result.x).toEqual(jasmine.any(Object));
-        expect(result.x.y).toEqual(jasmine.any(Object));
-        expect(result.x.a).toEqual(jasmine.any(Object));
+        expect(result.x).toEqual(expect.any(Object));
+        expect(result.x.y).toEqual(expect.any(Object));
+        expect(result.x.a).toEqual(expect.any(Object));
         expect(Object.keys(result.x.y).length).toEqual(0);
         expect(Object.keys(result.x.a).length).toEqual(0);
         expect(result.c).toEqual(3);
-        expect(result.d).toEqual(jasmine.any(Object));
+        expect(result.d).toEqual(expect.any(Object));
 
         result = filter(['*', '!x.*']).value;
-        expect(result.x).toEqual(jasmine.any(Object));
+        expect(result.x).toEqual(expect.any(Object));
         expect(Object.keys(result.x).length).toEqual(0);
         expect(result.c).toEqual(3);
-        expect(result.d).toEqual(jasmine.any(Object));
+        expect(result.d).toEqual(expect.any(Object));
 
         result = filter(['*', '!x']).value;
         // console.log('!x\t', result);
         expect(result.x).toBeUndefined();
         expect(result.c).toEqual(3);
-        expect(result.d).toEqual(jasmine.any(Object));
+        expect(result.d).toEqual(expect.any(Object));
 
         result = filter(['*']).value;
         // expect(JSON.stringify(result)).toEqual(JSON.stringify(data));
@@ -206,20 +206,20 @@ describe('Notation#filter()', () => {
 
         result = filter(['*', '!*.*.*']).value;
         // console.log('!*.*.*\n', JSON.stringify(result, null, '  '));
-        expect(result.x).toEqual(jasmine.any(Object));
-        expect(result.x.y).toEqual(jasmine.any(Object));
+        expect(result.x).toEqual(expect.any(Object));
+        expect(result.x.y).toEqual(expect.any(Object));
         expect(Object.keys(result.x.y).length).toEqual(0);
-        expect(result.x.a).toEqual(jasmine.any(Object));
+        expect(result.x.a).toEqual(expect.any(Object));
         expect(Object.keys(result.x.a).length).toEqual(0);
-        expect(result.d.e).toEqual(jasmine.any(Object));
+        expect(result.d.e).toEqual(expect.any(Object));
         expect(Object.keys(result.d.e).length).toEqual(0);
         expect(result.c).toEqual(3);
 
         result = filter(['*', '!*.*']).value;
         // console.log('!*.*\n', JSON.stringify(result, null, '  '));
-        expect(result.x).toEqual(jasmine.any(Object));
+        expect(result.x).toEqual(expect.any(Object));
         expect(Object.keys(result.x).length).toEqual(0);
-        expect(result.d).toEqual(jasmine.any(Object));
+        expect(result.d).toEqual(expect.any(Object));
         expect(Object.keys(result.d).length).toEqual(0);
         expect(result.c).toEqual(3);
     });
