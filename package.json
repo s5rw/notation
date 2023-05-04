@@ -1,6 +1,6 @@
 {
   "name": "@s5rw/notation",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Utility for modifying / processing the contents of Javascript objects or arrays via object notation strings or globs.",
   "repository": {
     "type": "git",
