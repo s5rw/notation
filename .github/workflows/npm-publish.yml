@@ -23,6 +23,8 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    environment: 
+      name: deploy_npm      
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -33,6 +35,9 @@ jobs:
       - run: |
           echo "@s5rw:registry=https://registry.npmjs.org" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" >> .npmrc
+          echo ${{secrets.NPM_AUTH_TOKEN}} >> .npmrc
+          echo ${{secrets.TEST}} >> tst
+
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
